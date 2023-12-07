@@ -176,3 +176,63 @@ function filterNotesByCategory(){
   
   updateUINotesContainer(filteredArray)
 }
+
+
+
+let avatarPage = document.querySelector('#avatar-page')
+let username = document.querySelector('#username-text')
+
+document.addEventListener('DOMContentLoaded', function(){
+window.onload = function PopAvatar(){
+  if(localStorage.getItem('user') === null){
+
+    avatarPage.classList.remove('hidden')
+  }
+  else{
+    avatarPage.classList.add('hidden')
+  }
+  }
+})
+
+
+function hideAvatarPage(){
+  let error = document.querySelector('#username-error')
+  if(username.value !== ''  ){
+
+    avatarPage.classList.add('hidden')
+    localStorage.setItem('user', username.value)
+    let storedUsername = localStorage.getItem('user')
+      document.getElementById('welcome').innerText = ' welcome ' + storedUsername + "!";
+    return;
+
+  }else{
+    error.classList.remove('hidden')
+    return;
+  }
+}
+
+
+let storedUsername = localStorage.getItem('user')
+document.getElementById('welcome').innerText = ' welcome ' + storedUsername + "!";
+
+function clearStorage(){
+  localStorage.clear();
+  location.reload();
+}
+
+function nightLightMode(){
+  document.querySelector('.header').classList.toggle('dark-mode')
+  document.querySelector('#logout').classList.toggle('dark-mode')
+  document.querySelector('main ').classList.toggle('dark-mode-two')
+}
+
+function selectImage(event) {
+  
+  if (event.target.tagName === 'IMG') {
+      
+      const images = document.querySelectorAll('#avatar-page img');
+      images.forEach(img => img.classList.remove('selected'));
+
+      event.target.classList.add('selected');
+  }
+}

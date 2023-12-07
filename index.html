@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Notes App</title>
   </head>
-  <body>
+  <body class="relative">
     <style>
       .notes,
       form {
         height: 100%;
         width: 100%;
-        max-width: 500px;
-        min-width: 400px;
-        border: 1px solid red;
+        max-width: 400px;
+        min-width: 300px;
       }
 
       .show-form {
@@ -42,8 +43,26 @@
           display: unset;
         }
       }
+      .dark-mode{
+        background-color: black;
+        color: aliceblue;
+      }
+      .dark-mode-two{
+        background-color: black;
+      }
+
+      .selected {
+            border: 2px solid black;
+        }
+
+
     </style>
-    <main class="bg-gray-200 flex justify-center items-center h-screen gap-4 p-20 relative">
+      <div class=" header text-center w-full bg-purple-200">
+        <button onclick="nightLightMode()"><i class="fa-solid fa-moon"></i></button>
+      <h1 class="  py-5" id="welcome"> </h1>
+        <button class="bg-white p-1 rounded-md" onclick="clearStorage()" id="logout">log out</button>
+      </div>
+    <main class="bg-purple-200 flex justify-center items-center h-screen gap-4 p-10 relative">
       <div class="notes p-4 rounded-md shadow-2xl bg-white">
         <span class="flex justify-between items-start">
           <h1 class="text-xl mb-4">Notes</h1>
@@ -55,9 +74,9 @@
               <option value="work">Work</option>
             </select>
           </div>
-          <div class="buttons flex gap-5">
-            <button onclick="sortNotesAsc()">asc</button>
-            <button onclick="sortNotesDesc()">desc</button>
+          <div class="buttons flex gap-2">
+            <button onclick="sortNotesAsc()"><i class="fa-solid fa-sort-up"></i></button>
+            <button onclick="sortNotesDesc()"><i class="fa-solid fa-sort-down"></i></button>
           </div>
         </span>
         <div class="notes-container flex flex-col gap-5"></div>
@@ -100,6 +119,30 @@
         <button onclick="addNote()" class="bg-green-200 p-2 rounded-md" type="button">Add Note</button>
       </form>
     </main>
+   
+      
+
+    </div>
+    <div class="flex justify-center items-center h-screen top-0 w-screen bg-purple-200 absolute hidden" id="avatar-page">
+      <div  onclick="selectImage(event)" class=" flex m-auto w-1/2 h-4/5 top-10  rounded-md absolute flex-wrap bg-purple-400 items-center justify-center">
+        <div class=" flex justify-around h-5 w-full items-center">
+          <p class="text-lg">To continue select your avatar &nbsp; and </p>
+          <label for="username" class="text-lg">Enter a username:</label> 
+          <div class="pt-5" >
+            <input type="text" name="username" id="username-text" class="text-center">
+            <p class="hidden  text-red-500 " id="username-error">please enter a username</p>
+          </div>
+        </div>
+       <img src="images\avatar 1.png" alt="" class="w-52 h-52 cursor-pointer">
+       <img src="images\avatar 3.png" alt="" class="w-52 h-52 cursor-pointer">
+       <img src="images\avatar 6.png" alt="" class="w-52 h-52 cursor-pointer">
+       <img src="images\avatar 5.png" alt="" class="w-52 h-52 cursor-pointer">
+       <img src="images\avatar 2.png" alt="" class="w-52 h-52 cursor-pointer">
+       <img src="images\avatar 4.png" alt="" class="w-52 h-52 cursor-pointer">
+      </div>
+      <div class="h-screen flex items-end mb-17"><button class="bg-purple-400 p-5 rounded-md" id="next-button" onclick="hideAvatarPage()"><b>next</b></button></div>
+    </div>
+
     <script src="script.js"> </script>
   </body>
 </html>
